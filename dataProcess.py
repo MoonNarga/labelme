@@ -42,6 +42,11 @@ class dataProcess():
                         file_str = "0 " + str(round(x_center, 6)) + ' ' + str(round(y_center, 6)) + ' ' + str(round(w_per, 6)) + ' ' + str(round(h_per, 6))
                         fp.write(file_str + '\n')
                     
+    def createImageInfo(self, srcDic, dstFile):
+        for root, dirs, files in os.walk(srcDic):
+            fp = open(dstFile, 'w', encoding='utf-8')
+            for f in files:
+                fp.write("./images/test/" + f + '\n')
 
 if __name__ == '__main__':
     path = "C:/Users/MoonN/Desktop/oldLabelSet/iodine/images/train"
