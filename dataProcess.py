@@ -13,6 +13,15 @@ class dataProcess():
                     fp = open(os.path.join(root, f), 'w', encoding="gbk")
                     json.dump(content, fp, indent=2, ensure_ascii=False)
 
+    def gbk2utf(self, path):
+        for root, dirs, files in os.walk(path):
+            for f in files:
+                if (f[-4:] == "json"):
+                    fp = open(os.path.join(root, f), 'r', encoding="gbk")
+                    content = json.load(fp)
+                    fp = open(os.path.join(root, f), 'w', encoding="utf-8")
+                    json.dump(content, fp, indent=2, ensure_ascii=False)
+
     def json2dataset(self, path):
         for root, dirs, files in os.walk(path):
             for f in files:
@@ -49,8 +58,8 @@ class dataProcess():
                 fp.write("./images/" + mode + '/' + f + '\n')
 
 if __name__ == '__main__':
-    path = "C:/Users/MoonN/Desktop/oldLabelSet/iodine/images/train"
+    path = "D:/Workspace/dataset/oldLabelSet/labelfiles/iodine"
     pathdir = "C:/Users/MoonN/Desktop/n"
     dataP = dataProcess()
     # dataP.json2dataset(path)
-    dataP.img_cp(path, pathdir, "train")
+    dataP.gbk2utf(path)
